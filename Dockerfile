@@ -1,0 +1,22 @@
+FROM node:22-bullseye-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  build-essential \
+  python3 \
+  pkg-config \
+  libprotobuf-dev \
+  procps \
+  ca-certificates && \
+  apt-get clean && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY package.json ./
+
+RUN npm install --build-from-source @tensorflow/tfjs-node
+RUN npm install -g pm2
+RUN npm install
+
+COPY . .
+
+CMD ["npx", "pm2-runtime", "start", "ecosystem.config.js"]

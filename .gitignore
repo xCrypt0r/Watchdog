@@ -1,0 +1,14 @@
+.vscode
+.VSCodeCounter
+archive
+dist
+node_modules
+test
+
+.DS_Store
+.env
+.idea
+cleaner/cleaner
+cleaner/target
+package-lock.json
+targets.json

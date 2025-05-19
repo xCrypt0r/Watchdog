@@ -1,0 +1,10 @@
+[package]
+name = "cleaner"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+walkdir = "2"
+xxhash-rust = { version = "0.8.15", features = ["xxh3"] }
+rayon = "1.10.0"
+colored = "3.0.0"

@@ -1,0 +1,18 @@
+{
+    "baseball_new11": {
+        "name": "국내야구",
+        "type": "main"
+    },
+    "chzzk": {
+        "name": "치지직",
+        "type": "minor"
+    },
+    "comic_new4": {
+        "name": "만화",
+        "type": "main"
+    },
+    "soopsosopbj": {
+        "name": "숲인방",
+        "type": "mini"
+    }
+}

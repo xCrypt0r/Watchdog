@@ -1,0 +1,12 @@
+services:
+  watchdog:
+    image: watchdog:1.0.0
+    build: .
+    env_file:
+        - .env
+    volumes:
+        - ${LOCAL_ARCHIVE_DIR}:${DOCKER_ARCHIVE_DIR}
+    environment:
+        - LOCAL_ARCHIVE_DIR=${DOCKER_ARCHIVE_DIR}
+        - TZ=Asia/Seoul
+    restart: always

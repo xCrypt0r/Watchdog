@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "baseUrl": "src",
+        "paths": {
+            "@constants": ["constants"],
+            "@constants/*": ["constants/*"],
+            "@data": ["data"],
+            "@data/*": ["data/*"],
+            "@types": ["types"],
+            "@types/*": ["types/*"],
+            "@utils": ["utils"],
+            "@utils/*": ["utils/*"]
+        }
+    }
+}

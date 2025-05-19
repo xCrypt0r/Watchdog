@@ -1,0 +1,18 @@
+{
+    "plugins": ["@trivago/prettier-plugin-sort-imports"],
+    "singleQuote": true,
+    "parser": "typescript",
+    "semi": true,
+    "useTabs": false,
+    "tabWidth": 4,
+    "printWidth": 120,
+    "arrowParens": "always",
+    "trailingComma": "none",
+    "importOrder": [
+        "<THIRD_PARTY_MODULES>",
+        "^[./](?!.*\\.json$)",
+        "^@(constants|data|types|utils)",
+        "^[./].*\\.json$"
+    ],
+    "importOrderSeparation": true
+}

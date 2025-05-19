@@ -1,0 +1,49 @@
+{
+    "name": "Watchdog",
+    "description": "Dcinside image crawler with NSFW detection",
+    "version": "1.0.0",
+    "engines": {
+        "node": ">=20 <21 || >=22 <23"
+    },
+    "scripts": {
+        "lint": "eslint src",
+        "check": "tsc --noEmit",
+        "build": "tsc",
+        "start": "npm run build && node --no-deprecation dist/index.js",
+        "pm2:start": "npm run build && pm2-runtime start ecosystem.config.js",
+        "docker:build": "npm run build && docker-compose build",
+        "docker:start": "npm run build && docker-compose up",
+        "docker:start+": "npm run build && docker-compose up --build",
+        "docker:stop": "docker-compose down",
+        "docker:prune": "docker system prune -a --volumes",
+        "cleaner:build": "(cd cleaner && make)"
+    },
+    "_moduleAliases": {
+        "@constants": "dist/constants",
+        "@data": "dist/data",
+        "@types": "dist/types",
+        "@utils": "dist/utils"
+    },
+    "dependencies": {
+        "@tensorflow/tfjs-node": "^4.22.0",
+        "axios": "^1.9.0",
+        "cheerio": "^1.0.0",
+        "dotenv": "^16.5.0",
+        "file-type": "^20.5.0",
+        "module-alias": "^2.2.3",
+        "nsfwjs": "^4.2.1",
+        "pm2": "^6.0.6",
+        "sharp": "^0.34.1"
+    },
+    "devDependencies": {
+        "@eslint/compat": "^1.2.9",
+        "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+        "eslint": "^9.26.0",
+        "eslint-config-prettier": "^10.1.5",
+        "eslint-plugin-prettier": "^5.4.0",
+        "eslint-plugin-unused-imports": "^4.1.4",
+        "prettier": "^3.5.3",
+        "typescript": "^5.8.3",
+        "typescript-eslint": "^8.32.1"
+    }
+}
