@@ -133,7 +133,7 @@ async function downloadImageFromURL(url: string, targetPost: string, attachmentN
     if (
         isSupportedImageFormat(fileExtension) &&
         fileType &&
-        fileType.mime !== VALID_MIME_TYPES[fileExtension] &&
+        fileType.mime === VALID_MIME_TYPES[fileExtension] &&
         imageBuffer.length <= NSFWJS_IMAGE_SIZE_LIMIT
     ) {
         let { isNsfw, type } = await checkNsfw(imageBuffer);
