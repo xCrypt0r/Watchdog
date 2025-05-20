@@ -11,11 +11,6 @@
         "build": "tsc",
         "start": "npm run build && node --no-deprecation dist/index.js",
         "pm2:start": "npm run build && pm2-runtime start ecosystem.config.js",
-        "docker:build": "npm run build && docker-compose build",
-        "docker:start": "npm run build && docker-compose up",
-        "docker:start+": "npm run build && docker-compose up --build",
-        "docker:stop": "docker-compose down",
-        "docker:prune": "docker system prune -a --volumes",
         "cleaner:build": "(cd cleaner && make)"
     },
     "_moduleAliases": {
