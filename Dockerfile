@@ -14,7 +14,6 @@ WORKDIR /app
 COPY package.json ./
 
 RUN npm install --build-from-source @tensorflow/tfjs-node
-RUN npm install -g pm2
 RUN npm install
 
 COPY . .
