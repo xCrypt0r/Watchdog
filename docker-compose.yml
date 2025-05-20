@@ -1,7 +1,6 @@
 services:
   watchdog:
-    image: watchdog:1.0.0
-    build: .
+    image: xcrypt0r/watchdog:latest
     env_file:
         - .env
     volumes:
