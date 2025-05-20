@@ -14,9 +14,10 @@ import {
     LOCAL_ARCHIVE_DIR,
     NSFWJS_IMAGE_SIZE_LIMIT,
     NSFWJS_SUPPORTED_IMAGE_FORMATS,
-    SWEEP_INTERVAL
+    SWEEP_INTERVAL,
+    VALID_MIME_TYPES
 } from '@constants';
-import type { GalleryId, GalleryName, GalleryType } from '@types';
+import type { GalleryId, GalleryName, GalleryType, NsfwjsSupportedImageFormat } from '@types';
 import { checkNsfw, convertWebP2Png } from '@utils';
 
 const {
@@ -118,7 +119,7 @@ async function downloadImageFromURL(url: string, targetPost: string, attachmentN
     }
 
     let imageBuffer = Buffer.from(response.data);
-    let fileExtension = path.extname(attachmentName);
+    let fileExtension = path.extname(attachmentName).toLowerCase();
 
     if (fileExtension === '.webp') {
         imageBuffer = await convertWebP2Png(imageBuffer);
@@ -127,12 +128,13 @@ async function downloadImageFromURL(url: string, targetPost: string, attachmentN
 
     let folderName = path.join(LOCAL_ARCHIVE_DIR!, GALLERY_ID);
     let fileName = `[${GALLERY_ID}] ${targetPost}_${index}${fileExtension}`;
-    let imageType = await fileTypeFromBuffer(imageBuffer);
+    let fileType = await fileTypeFromBuffer(imageBuffer);
 
     if (
-        imageType &&
-        imageBuffer.length <= NSFWJS_IMAGE_SIZE_LIMIT &&
-        NSFWJS_SUPPORTED_IMAGE_FORMATS.includes(fileExtension)
+        isSupportedImageFormat(fileExtension) &&
+        fileType &&
+        fileType.mime !== VALID_MIME_TYPES[fileExtension] &&
+        imageBuffer.length <= NSFWJS_IMAGE_SIZE_LIMIT
     ) {
         let { isNsfw, type } = await checkNsfw(imageBuffer);
 
@@ -183,6 +185,10 @@ async function fetchBuffer(config: {
     } catch {
         return undefined;
     }
+}
+
+function isSupportedImageFormat(ext: string): ext is NsfwjsSupportedImageFormat {
+    return NSFWJS_SUPPORTED_IMAGE_FORMATS.includes(ext as NsfwjsSupportedImageFormat);
 }
 
 function sleep(ms: number): Promise<void> {

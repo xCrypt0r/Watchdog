@@ -39,8 +39,8 @@ export async function checkNsfw(imageBuffer: Buffer): Promise<NsfwCheckResult> {
             isNsfw,
             type: topPrediction.className
         };
-    } catch {
-        console.error('Error in nsfw checker');
+    } catch (err: any) {
+        console.error('Error in NSFW checker: ', err);
 
         return {
             isNsfw: false,
