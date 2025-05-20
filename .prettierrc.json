@@ -10,9 +10,8 @@
     "trailingComma": "none",
     "importOrder": [
         "<THIRD_PARTY_MODULES>",
-        "^[./](?!.*\\.json$)",
-        "^@(constants|data|types|utils)",
-        "^[./].*\\.json$"
+        "^[./]",
+        "^@(constants|data|types|utils)"
     ],
     "importOrderSeparation": true
 }
