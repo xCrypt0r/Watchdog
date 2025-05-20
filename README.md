@@ -24,7 +24,7 @@
 1. 이 레포지토리를 다운로드합니다.
 1. [Node.js][node.js]를 설치합니다.  
     - 호환되는 버전은 **20.x** 또는 **22.x**입니다.
-        - 이외의 버전을 사용할 경우, TensorFlow의 의존성 문제로 인해 프로그램이 정상적으로 작동하지 않을 수 있습니다.
+        - 이외의 버전 설치 시 tensorflow의 의존성 문제로 제대로 동작하지 않습니다.
     - 다른 Node.js 버전을 사용 중일 경우 [.nvmrc](.nvmrc) 파일을 참고해 권장 버전을 사용할 수 있습니다.  
     [nvm](https://github.com/nvm-sh/nvm)을 설치하고 다음 명령어로 권장 버전을 사용합니다.   
 
@@ -41,13 +41,16 @@
 1. `npm start` 또는 `npm run pm2:start`를 입력하여 프로그램을 실행합니다.
 
 ### 도커
-1. [Docker](docker)를 설치합니다.
+1. [Docker][docker]를 설치합니다.
 1. Docker Desktop의 설정에서 최대 메모리 사용량을 조정합니다.
     - 이 프로그램은 [ecosystem.config.js](ecosystem.config.js)의 설정에 따라 pm2 사용 시 최대 16GB까지 메모리를 사용할 수 있으므로, Docker 메모리 제한을 이 이상으로 설정하세요.
+        - Windows에서 WSL 2기반 Docker Desktop을 사용하는 경우 `.wslconfig`로 메모리 제한을 설정하세요.
 
     ![](https://i.imgur.com/R7QZi2d.png)
 
-1. `npm run docker:start+`를 입력하여 프로그램을 실행합니다.
+1. 아래 두 가지 명령어 중 하나를 입력합니다.
+    - `make up`: Docker Hub에 올려둔 빌드된 이미지를 사용해 컨테이너를 실행합니다.
+    - `make build`: 로컬 소스 코드를 기반으로 이미지를 빌드하고 실행합니다.
 
 ## 사용법
 - 기본적으로 이미지는 레포지토리 하위의 archive 폴더 내에 저장됩니다.
