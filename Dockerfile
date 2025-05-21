@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json postinstall.mjs ./
 
 RUN npm install --build-from-source @tensorflow/tfjs-node
 RUN npm install

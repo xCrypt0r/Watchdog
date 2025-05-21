@@ -7,11 +7,15 @@
     },
     "scripts": {
         "lint": "eslint src",
-        "check": "tsc --noEmit",
-        "build": "tsc",
+        "check": "npx tsc --noEmit",
+        "build": "npx tsc",
         "start": "npm run build && node --no-deprecation dist/index.js",
-        "pm2:start": "npm run build && pm2-runtime start ecosystem.config.js",
-        "cleaner:build": "(cd cleaner && make)"
+        "pm2:start": "npm run build && npx pm2-runtime start ecosystem.config.js",
+        "docker:up": "docker-compose -f docker-compose.yml up",
+        "docker:stop": "docker-compose down",
+        "docker:build": "npm run build && docker-compose up --build",
+        "cleaner:build": "(cd cleaner && make)",
+        "postinstall": "node postinstall.mjs"
     },
     "_moduleAliases": {
         "@constants": "dist/constants",

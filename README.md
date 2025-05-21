@@ -29,16 +29,22 @@
     [nvm](https://github.com/nvm-sh/nvm)을 설치하고 다음 명령어로 권장 버전을 사용합니다.   
 
         ```bash
-        nvm install
-        nvm use
+        nvm install 22
+        nvm use 22
         node -v
         ```
-1. `npm install`을 입력하여 의존성을 설치합니다.
 1. [.env.example](.env.example)을 `.env`로 변경합니다.
 1. [targets.example.json](targets.example.json)을 `targets.json`으로 변경합니다.
 
 ### 로컬
+#### Windows
+1. [Python][python] **3.x** 버전을 설치합니다.
+1. [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/ko/visual-cpp-build-tools)를 설치합니다. ([링크](https://rinkesh-patel.medium.com/easy-way-to-install-tensorflow-tfjs-node-in-windows-11-machine-158f049d9efa) 참고)
+1. `npm install`을 입력하여 의존성을 설치합니다.
 1. `npm start` 또는 `npm run pm2:start`를 입력하여 프로그램을 실행합니다.
+
+#### Linux
+⚠️ 설명 추가 예정
 
 ### 도커
 1. [Docker][docker]를 설치합니다.
@@ -48,9 +54,10 @@
 
     ![](https://i.imgur.com/R7QZi2d.png)
 
+1. `npm install`을 입력하여 의존성을 설치합니다.
 1. 아래 두 가지 명령어 중 하나를 입력합니다.
-    - `make up`: Docker Hub에 올려둔 빌드된 이미지를 사용해 컨테이너를 실행합니다.
-    - `make build`: 로컬 소스 코드를 기반으로 이미지를 빌드하고 실행합니다.
+    - `make up` / `npm run docker:up`(Windows): Docker Hub에 올려둔 빌드된 이미지를 내려받아 컨테이너를 실행합니다.
+    - `make build` / `npm run docker:build`(Windows): 로컬 소스 코드를 기반으로 이미지를 빌드하고 실행합니다.
 
 ## 사용법
 - 기본적으로 이미지는 레포지토리 하위의 archive 폴더 내에 저장됩니다.
@@ -81,6 +88,7 @@ Authored and maintained by xCrypt0r
 
 [typescript]: https://www.typescriptlang.org
 [node.js]: https://nodejs.org/ko
+[python]: https://www.python.org/downloads
 [docker]: https://docs.docker.com/get-started/get-docker
 [my github]: https://github.com/xCrypt0r
 [my discord]: https://discord.com/users/282821913968115713
