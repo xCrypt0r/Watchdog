@@ -12,7 +12,8 @@ import {
     DCINSIDE_BASE_POST_URL,
     IMAGE_DOWNLOAD_DELAY,
     LOCAL_ARCHIVE_DIR,
-    NSFWJS_IMAGE_SIZE_LIMIT,
+    NSFWJS_IMAGE_SIZE_MAX,
+    NSFWJS_IMAGE_SIZE_MIN,
     NSFWJS_SUPPORTED_IMAGE_FORMATS,
     SWEEP_INTERVAL,
     VALID_MIME_TYPES
@@ -119,6 +120,11 @@ async function downloadImageFromURL(url: string, targetPost: string, attachmentN
     }
 
     let imageBuffer = Buffer.from(response.data);
+
+    if (imageBuffer.length < NSFWJS_IMAGE_SIZE_MIN) {
+        return;
+    }
+
     let fileExtension = path.extname(attachmentName).toLowerCase();
 
     if (fileExtension === '.webp') {
@@ -134,7 +140,7 @@ async function downloadImageFromURL(url: string, targetPost: string, attachmentN
         isSupportedImageFormat(fileExtension) &&
         fileType &&
         fileType.mime === VALID_MIME_TYPES[fileExtension] &&
-        imageBuffer.length <= NSFWJS_IMAGE_SIZE_LIMIT
+        imageBuffer.length <= NSFWJS_IMAGE_SIZE_MAX
     ) {
         let { isNsfw, type } = await checkNsfw(imageBuffer);
 

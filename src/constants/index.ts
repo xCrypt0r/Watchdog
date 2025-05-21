@@ -13,7 +13,8 @@ export const NSFW_MODEL_PATH = 'file://./models/';
 export const NSFW_CLASSES: Partial<NsfwType>[] = ['Porn', 'Hentai', 'Sexy'];
 export const NSFW_THRESHOLD = 0.7;
 export const NSFWJS_SUPPORTED_IMAGE_FORMATS = ['.jpg', '.jpeg', '.png', '.gif', '.bmp'] as const;
-export const NSFWJS_IMAGE_SIZE_LIMIT = 10 * 1024 * 1024;
+export const NSFWJS_IMAGE_SIZE_MAX = 10 * 1024 * 1024;
+export const NSFWJS_IMAGE_SIZE_MIN = 10 * 1024;
 export const NSFWJS_TYPE_ON_ERROR = 'Neutral';
 export const VALID_MIME_TYPES: Record<NsfwjsSupportedImageFormat, string> = {
     '.bmp': 'image/bmp',
