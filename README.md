@@ -2,6 +2,7 @@
 [![Language](https://img.shields.io/badge/Language-Typescript-3178c6?style=for-the-badge&logo=typescript)][typescript]
 [![GPL License](https://img.shields.io/badge/License-GPL--3.0-28a745?style=for-the-badge&logo=github)](LICENSE)
 [![Repo Size](https://img.shields.io/github/languages/code-size/xCrypt0r/Watchdog?style=for-the-badge&label=SIZE&color=lightgrey&logo=github)](/../../)
+[![IMAGE SIZE](https://img.shields.io/docker/image-size/xcrypt0r/watchdog?style=for-the-badge&label=SIZE&logo=docker)](https://hub.docker.com/r/xcrypt0r/watchdog)
 
 🐶 **Watchdog** is a Dcinside image crawler that includes NSFW detection.
 
@@ -24,7 +25,7 @@
 1. 이 레포지토리를 다운로드합니다.
 1. [Node.js][node.js]를 설치합니다.  
     - 호환되는 버전은 **20.x** 또는 **22.x**입니다.
-        - 이외의 버전 설치 시 tensorflow의 의존성 문제로 제대로 동작하지 않습니다.
+        - 이외의 버전 설치 시 TensorFlow의 의존성 문제로 제대로 동작하지 않습니다.
     - 다른 Node.js 버전을 사용 중일 경우 [.nvmrc](.nvmrc) 파일을 참고해 권장 버전을 사용할 수 있습니다.  
     [nvm](https://github.com/nvm-sh/nvm)을 설치하고 다음 명령어로 권장 버전을 사용합니다.   
 
