@@ -21,7 +21,6 @@ test
 docker-compose.yml
 Dockerfile
 eslint.config.mjs
-package-lock.json
 README.md
 LICENSE
 targets.example.json

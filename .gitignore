@@ -10,5 +10,4 @@ test
 .idea
 cleaner/cleaner
 cleaner/target
-package-lock.json
 targets.json
