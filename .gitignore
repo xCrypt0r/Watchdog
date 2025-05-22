@@ -11,3 +11,4 @@ test
 cleaner/cleaner
 cleaner/target
 targets.json
+tsconfig.tsbuildinfo

@@ -4,7 +4,6 @@
 .VSCodeCounter
 archive
 cleaner
-docs
 node_modules
 src
 test
@@ -28,3 +27,4 @@ LICENSE
 Makefile
 targets.example.json
 tsconfig.json
+tsconfig.tsbuildinfo
