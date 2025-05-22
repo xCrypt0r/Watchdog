@@ -2,6 +2,10 @@ name: Docker Build and Push
 
 on:
   push:
+    branches:
+      - main
+    tags:
+      - 'v*'
     paths:
       - 'src/**'
       - '.dockerignore'
@@ -11,11 +15,10 @@ on:
       - 'Dockerfile'
       - 'package.json'
       - 'package-lock.json'
-    branches:
-      - main
 
 jobs:
   build-and-push:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,7 +26,6 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
-
         with:
           node-version: 22
           cache: 'npm'
@@ -57,3 +59,30 @@ jobs:
           tags: xcrypt0r/watchdog:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  update-release:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Strip "v" from tag
+        id: strip
+        run: echo "version=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      - name: Update GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Watchdog ${{ steps.strip.outputs.version }}
+          body: |
+            🐳 Docker image pushed
+
+            ```
+            docker pull xcrypt0r/watchdog:latest
+            ```
+
+            [View on Docker Hub](https://hub.docker.com/r/xcrypt0r/watchdog)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
