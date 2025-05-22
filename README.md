@@ -2,7 +2,8 @@
 [![Language](https://img.shields.io/badge/Language-Typescript-3178c6?style=for-the-badge&logo=typescript)][typescript]
 [![GPL License](https://img.shields.io/badge/License-GPL--3.0-28a745?style=for-the-badge&logo=github)](LICENSE)
 [![Repo Size](https://img.shields.io/github/languages/code-size/xCrypt0r/Watchdog?style=for-the-badge&label=SIZE&color=lightgrey&logo=github)](/../../)
-[![IMAGE SIZE](https://img.shields.io/docker/image-size/xcrypt0r/watchdog?style=for-the-badge&label=SIZE&logo=docker)](https://hub.docker.com/r/xcrypt0r/watchdog)
+[![Github Action](https://img.shields.io/github/actions/workflow/status/xcrypt0r/Watchdog/docker-build.yml?branch=main&style=for-the-badge&logo=githubactions)](https://github.com/xcrypt0r/Watchdog/actions/workflows/docker-build.yml)
+[![Image Size](https://img.shields.io/docker/image-size/xcrypt0r/watchdog?style=for-the-badge&label=SIZE&logo=docker)](https://hub.docker.com/r/xcrypt0r/watchdog)
 
 🐶 **Watchdog** is a Dcinside image crawler that includes NSFW detection.
 
@@ -59,11 +60,18 @@
 
     ![](https://i.imgur.com/R7QZi2d.png)
 
-1. `npm install`을 입력하여 의존성을 설치합니다.
-1. 아래 두 가지 명령어 중 하나를 입력합니다.
-    - `make up` / `npm run docker:up`(Windows): Docker Hub에 올려둔 빌드된 이미지를 내려받아 컨테이너를 실행합니다.  
-    이 경우 [공통](#공통)의 파일 이름 바꾸는 과정은 필요없습니다.
-    - `make build` / `npm run docker:build`(Windows): 로컬 소스 코드를 기반으로 이미지를 빌드하고 실행합니다.
+1. 아래 두 가지 방법 중 하나를 선택하세요.
+    - Docker Hub에 올려둔 빌드된 이미지를 내려받아 컨테이너를 실행합니다.  
+    이 경우 [공통](#공통)의 파일 이름을 바꾸는 과정은 필요없습니다.  
+        #### Windows
+        `npm run docker:up`
+        #### Linux / macOS
+        `make up` 또는 `npm run docker:up`
+    - 로컬 소스 코드를 기반으로 이미지를 빌드하고 실행합니다.  
+        #### Windows
+        `npm run docker:build`
+        #### Linux / macOS
+        `make build` 또는 `npm run docker:build`
 
 ## 사용법
 - 기본적으로 이미지는 레포지토리 하위의 archive 폴더 내에 저장됩니다.
