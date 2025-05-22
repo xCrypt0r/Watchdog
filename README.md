@@ -38,14 +38,18 @@
 1. [targets.example.json](targets.example.json)을 `targets.json`으로 변경합니다.
 
 ### 로컬
-#### Windows
 1. [Python][python] **3.x** 버전을 설치합니다.
-1. [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/ko/visual-cpp-build-tools)를 설치합니다. ([링크](https://rinkesh-patel.medium.com/easy-way-to-install-tensorflow-tfjs-node-in-windows-11-machine-158f049d9efa) 참고)
+2. 빌드 도구를 설치합니다.
+    #### Windows
+    [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/ko/visual-cpp-build-tools)를 설치합니다. ([링크](https://rinkesh-patel.medium.com/easy-way-to-install-tensorflow-tfjs-node-in-windows-11-machine-158f049d9efa) 참고)
+
+    #### Linux
+    `sudo apt-get install build-essential`
+
+    #### macOS
+    `xcode-select --install`
 1. `npm install`을 입력하여 의존성을 설치합니다.
 1. `npm start` 또는 `npm run pm2:start`를 입력하여 프로그램을 실행합니다.
-
-#### Linux
-⚠️ 설명 추가 예정
 
 ### 도커
 1. [Docker][docker]를 설치합니다.
@@ -57,7 +61,8 @@
 
 1. `npm install`을 입력하여 의존성을 설치합니다.
 1. 아래 두 가지 명령어 중 하나를 입력합니다.
-    - `make up` / `npm run docker:up`(Windows): Docker Hub에 올려둔 빌드된 이미지를 내려받아 컨테이너를 실행합니다.
+    - `make up` / `npm run docker:up`(Windows): Docker Hub에 올려둔 빌드된 이미지를 내려받아 컨테이너를 실행합니다.  
+    이 경우 [공통](#공통)의 파일 이름 바꾸는 과정은 필요없습니다.
     - `make build` / `npm run docker:build`(Windows): 로컬 소스 코드를 기반으로 이미지를 빌드하고 실행합니다.
 
 ## 사용법
