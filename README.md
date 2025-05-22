@@ -22,25 +22,30 @@
 ![](https://i.imgur.com/x5Jnzs5.png)
 
 ## 설치
+### 빌드 결과
+|운영체제|결과|
+|---|:---:|
+|<img src="https://github.com/ngeenx/operating-system-logos/blob/master/src/128x128/WIN.png" width="16"  alt="Windows logo">  Windows 11|✅ 성공|
+|<img src="https://github.com/ngeenx/operating-system-logos/blob/master/src/128x128/UBT.png" width="16" alt="Ubuntu logo"> Ubuntu 24.04|✅ 성공|
+|<img src="https://github.com/ngeenx/operating-system-logos/blob/master/src/128x128/MAC.png" width="16" alt="macOS logo"> macOS Sequoia|✅ 성공|
+
 ### 공통
 1. 이 레포지토리를 다운로드합니다.
-1. [Node.js][node.js]를 설치합니다.  
+1. [Node.js][node.js]와 [npm][npm]을 설치합니다.
     - 호환되는 버전은 **20.x** 또는 **22.x**입니다.
         - 이외의 버전 설치 시 TensorFlow의 의존성 문제로 제대로 동작하지 않습니다.
     - 다른 Node.js 버전을 사용 중일 경우 [.nvmrc](.nvmrc) 파일을 참고해 권장 버전을 사용할 수 있습니다.  
-    [nvm](https://github.com/nvm-sh/nvm)을 설치하고 다음 명령어로 권장 버전을 사용합니다.   
-
+    [nvm](https://github.com/nvm-sh/nvm)을 설치하고 다음 명령어로 권장 버전을 사용합니다.
         ```bash
         nvm install 22
         nvm use 22
         node -v
         ```
-1. [.env.example](.env.example)을 `.env`로 변경합니다.
-1. [targets.example.json](targets.example.json)을 `targets.json`으로 변경합니다.
+1. `npm install`을 입력하여 의존성을 설치합니다.
 
 ### 로컬
 1. [Python][python] **3.x** 버전을 설치합니다.
-2. 빌드 도구를 설치합니다.
+2. TensorFlow 빌드 도구를 설치합니다.
     #### Windows
     [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/ko/visual-cpp-build-tools)를 설치합니다. ([링크](https://rinkesh-patel.medium.com/easy-way-to-install-tensorflow-tfjs-node-in-windows-11-machine-158f049d9efa) 참고)
 
@@ -49,7 +54,7 @@
 
     #### macOS
     `xcode-select --install`
-1. `npm install`을 입력하여 의존성을 설치합니다.
+1. [.env.example](.env.example)을 `.env`로, [targets.example.json](targets.example.json)을 `targets.json`으로 변경합니다.
 1. `npm start` 또는 `npm run pm2:start`를 입력하여 프로그램을 실행합니다.
 
 ### 도커
@@ -61,17 +66,11 @@
     ![](https://i.imgur.com/R7QZi2d.png)
 
 1. 아래 두 가지 방법 중 하나를 선택하세요.
-    - Docker Hub에 올려둔 빌드된 이미지를 내려받아 컨테이너를 실행합니다.  
-    이 경우 [공통](#공통)의 파일 이름을 바꾸는 과정은 필요없습니다.  
-        #### Windows
-        `npm run docker:up`
-        #### Linux / macOS
-        `make up` 또는 `npm run docker:up`
-    - 로컬 소스 코드를 기반으로 이미지를 빌드하고 실행합니다.  
-        #### Windows
-        `npm run docker:build`
-        #### Linux / macOS
-        `make build` 또는 `npm run docker:build`
+    - **(권장) Docker Hub에서 이미지를 내려받아 컨테이너를 실행합니다.**
+        1. `npm run docker:up`
+    - 로컬에서 이미지를 빌드하고 실행합니다.
+        1. [.env.example](.env.example)을 `.env`로, [targets.example.json](targets.example.json)을 `targets.json`으로 변경합니다.
+        1. `npm run docker:build`
 
 ## 사용법
 - 기본적으로 이미지는 레포지토리 하위의 archive 폴더 내에 저장됩니다.
@@ -102,6 +101,7 @@ Authored and maintained by xCrypt0r
 
 [typescript]: https://www.typescriptlang.org
 [node.js]: https://nodejs.org/ko
+[npm]: https://www.npmjs.com
 [python]: https://www.python.org/downloads
 [docker]: https://docs.docker.com/get-started/get-docker
 [my github]: https://github.com/xCrypt0r
