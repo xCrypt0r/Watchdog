@@ -20,9 +20,11 @@ test
 .prettierignore
 .prettierrc.json
 docker-compose.yml
+docker-compose.override.yml
 Dockerfile
 eslint.config.mjs
 README.md
 LICENSE
+Makefile
 targets.example.json
 tsconfig.json
