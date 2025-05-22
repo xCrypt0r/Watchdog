@@ -14,7 +14,7 @@ WORKDIR /app
 COPY package.json package-lock.json postinstall.mjs ./
 
 RUN npm install --build-from-source @tensorflow/tfjs-node
-RUN npm install
+RUN npm ci
 
 COPY . .
 
