@@ -1,0 +1,90 @@
+name: Upload Cleaner to Latest Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.runs_on }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            runs_on: ubuntu-latest
+          - target: x86_64-pc-windows-gnu
+            runs_on: ubuntu-latest
+          - target: x86_64-apple-darwin
+            runs_on: macos-latest
+          - target: aarch64-apple-darwin
+            runs_on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: ${{ matrix.target }}
+          override: true
+
+      - name: Install dependencies for Windows
+        if: matrix.target == 'x86_64-pc-windows-gnu'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mingw-w64
+
+      - name: Build Rust binary
+        working-directory: ./cleaner
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Rename and package binary
+        working-directory: ./cleaner
+        run: |
+          BIN_NAME=cleaner
+          EXT=""
+
+          if [[ "${TARGET}" == *windows* ]]; then
+            EXT=".exe"
+          fi
+
+          mkdir -p dist
+          cp target/${TARGET}/release/$BIN_NAME$EXT dist/${BIN_NAME}-${TARGET}$EXT
+          cd dist
+
+          if [[ "${TARGET}" == *windows* ]]; then
+            zip ${BIN_NAME}-${TARGET}.zip ${BIN_NAME}-${TARGET}$EXT
+            rm ${BIN_NAME}-${TARGET}$EXT
+          else
+            tar -czvf ${BIN_NAME}-${TARGET}.tar.gz ${BIN_NAME}-${TARGET}$EXT
+            rm ${BIN_NAME}-${TARGET}$EXT
+          fi
+        env:
+          TARGET: ${{ matrix.target }}
+
+      - name: Get latest release tag
+        id: get_release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const latest = await github.rest.repos.getLatestRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+
+              core.setOutput("tag_name", latest.data.tag_name);
+            } catch (error) {
+              core.setFailed(error.message);
+            }
+
+      - name: Upload cleaner binaries to latest release
+        if: steps.get_release.outputs.tag_name != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_release.outputs.tag_name }}
+          files: cleaner/dist/*
