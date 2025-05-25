@@ -58,5 +58,8 @@ fn main() -> io::Result<()> {
         format_bytes(total_deleted_bytes)
     )?;
     handle.flush()?;
+
+    let _ = io::stdin().read_line(&mut String::new());
+
     Ok(())
 }
